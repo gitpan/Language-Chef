@@ -1,4 +1,4 @@
-Language::Chef version 0.01
+Language::Chef version 0.02
 ===========================
 
 Language::Chef and all contained modules represent a simple
@@ -32,3 +32,4 @@ Author can be reached at <chef-module@steffen-mueller.net>
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself. 
+

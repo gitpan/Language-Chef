@@ -7,7 +7,7 @@ use warnings;
 use Carp;
 
 use vars qw/$VERSION/;
-$VERSION = '0.01';
+$VERSION = '0.02';
 
 use Language::Chef::Recipe;
 use Language::Chef::Container;
@@ -581,3 +581,4 @@ terms as Perl itself.
 Author can be reached at chef-module at steffen-mueller dot net
 
 =cut
+

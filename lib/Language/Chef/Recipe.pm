@@ -10,7 +10,7 @@ use Language::Chef::Ingredient;
 use Language::Chef::Container;
 
 use vars qw/$VERSION %Grammars @GrammarOrder %Commands/;
-$VERSION = '0.01';
+$VERSION = '0.02';
 
 @GrammarOrder = qw(
   add_dry put fold add remove combine divide
@@ -727,3 +727,4 @@ terms as Perl itself.
 Author can be reached at chef-module at steffen-mueller dot net
 
 =cut
+

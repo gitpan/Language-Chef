@@ -9,7 +9,7 @@ use Carp;
 use Language::Chef::Ingredient;
 
 use vars qw/$VERSION/;
-$VERSION = '0.01';
+$VERSION = '0.02';
 
 sub new {
    my $proto = shift;
@@ -270,4 +270,5 @@ terms as Perl itself.
 Author can be reached at chef-module at steffen-mueller dot net
 
 =cut
+
 

@@ -1,5 +1,9 @@
 Revision history for Perl extension Language::Chef.
 
+0.02  Wed Dec 25 15:25:12 2002
+	- Now compiles on *nix
+
 0.01  Fri Dec 20 14:08:38 2002
 	- original version as released to CPAN
+
 
