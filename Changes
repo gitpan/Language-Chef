@@ -1,5 +1,9 @@
 Revision history for Perl extension Language::Chef.
 
+0.04  Fri Jan 31 13:03:11 2003
+	- Fixed bugs that I reintroduced in 0.03.
+	- Regained *nix.
+
 0.03  Fri Jan 31 00:45:26 2003
 	- Implemented the specification changes from Jan 26.
 	- Added appropriate test file and example.
@@ -10,4 +14,5 @@ Revision history for Perl extension Language::Chef.
 
 0.01  Fri Dec 20 14:08:38 2002
 	- original version as released to CPAN
+
 

@@ -10,3 +10,4 @@ WriteMakefile(
       (ABSTRACT_FROM => 'lib/Language/Chef.pm', # retrieve abstract from module
        AUTHOR     => 'Steffen Mueller <chef-module@steffen-mueller.net>') : ()),
 );
+
