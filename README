@@ -1,0 +1,34 @@
+Language::Chef version 0.01
+===========================
+
+Language::Chef and all contained modules represent a simple
+interpreter of the Chef programming language designed by
+David Morgan-Mar.
+
+INSTALLATION
+
+To install this module type the following:
+
+   perl Makefile.PL
+   make
+   make test
+   make install
+
+DEPENDENCIES
+
+This module requires these other modules and libraries:
+
+  Test::More 0.44 or newer
+
+Note that it may well work with older versions of this module,
+but I cannot guarantee that it will because I only tested it with
+the version listed.
+
+COPYRIGHT AND LICENCE
+
+Copyright (C) 2002 Steffen Mueller, all rights reserved.
+
+Author can be reached at <chef-module@steffen-mueller.net>
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself. 
