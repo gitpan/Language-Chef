@@ -10,7 +10,8 @@ use warnings;
 
 use lib 'lib';
 
-use Test::More tests => 8;
+use Test::More tests => 10;
+use File::Temp qw/tempfile/;
 
 use Language::Chef;
 
@@ -18,14 +19,25 @@ ok(1, "Module compiled."); # If we made it this far, we're ok.
 
 #########################
 
-my $testname        = 'Exponentiation';
-my $expected_result = ' 8';
+my $testname        = 'STDIN-Test';
+my $expected_result = ' 10';
 
 local $/ = undef;
 my $code = <DATA>;
 
 my $compiled = Language::Chef->compile( $code );
 ok(ref $compiled eq 'Language::Chef', "$testname code compiled.");
+
+local $| = 1;
+*OLDSTDIN = *STDIN;
+
+(*STDIN) = tempfile(UNLINK => 1);
+
+print STDIN "10\n";
+print STDIN "10\n";
+print STDIN "10\n";
+seek STDIN, 0, 0;
+ok(1, "Redirected STDIN for testing.");
 
 my $result = $compiled->execute();
 ok($result eq $expected_result, "Correct result.");
@@ -43,36 +55,24 @@ ok($result eq $expected_result, "Correct result after reconstruction.");
 $dump = $compiled->dump('autorun');
 ok((defined $dump and not ref $dump), "Dumped with autorun enabled.");
 
-$result = eval $dump;
 ok((not $@ and $result eq $expected_result), "Correct result after reconstruction.");
 
+close STDIN;
+*STDIN = *OLDSTDIN;
+ok(1, "Restored STDIN.");
 
 __DATA__
 
-Exponentiation cake.
+STDIN stew.
 
-Calculate exponentiation: sugar ^ flour.
+Read flour from STDIN and output it.
 
 Ingredients.
-3 kg flour
-2 g sugar
-1 egg
+flour
 
 Method.
+Take flour from refridgerator.
 Put flour into mixing bowl.
-Bake flour.
-Remove egg.
-Fold flour into mixing bowl.
-Put sugar into mixing bowl.
-Cool flour.
-Combine sugar.
-Water flour until cooled.
-Pour contents of the mixing bowl into the baking dish.
-Refrigerate for 1 hour.
-Heat until baked.
-Clean mixing bowl.
-Put egg into mixing bowl.
-Stir for 2 minutes.
 Pour contents of the mixing bowl into the baking dish.
 Refrigerate for 1 hour.
 

@@ -76,4 +76,3 @@ Fold cigarettes into the mixing bowl. Put the cannabis into the mixing bowl.
 Smoke the cigarettes. Combine cigarettes. Breathe the cigarettes until smoked.
 Fold cigarettes into the mixing bowl. Clean mixing bowl. Put cigarettes into
 mixing bowl.
-

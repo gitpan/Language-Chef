@@ -10,10 +10,10 @@ use Language::Chef::Ingredient;
 use Language::Chef::Container;
 
 use vars qw/$VERSION %Grammars @GrammarOrder %Commands/;
-$VERSION = '0.02';
+$VERSION = '0.03';
 
 @GrammarOrder = qw(
-  add_dry put fold add remove combine divide
+  take_from add_dry put fold add remove combine divide
   liquify_contents liquify stir_time stir_ingredient
   mix clean pour refrigerate set_aside serve_with
   until_verbed verb
@@ -42,6 +42,14 @@ $VERSION = '0.02';
         $recipe->require_bowl($2||1);
         $recipe->require_ingredient($1, 'put');
         return 'put', $1, ($2||1);
+     },
+
+     take_from => sub {
+        my $recipe = shift;
+        local $_ = shift;
+        /^Take $ingr from refridgerator$/ or return();
+        $recipe->require_ingredient($1);
+        return 'take_from', $1;
      },
 
      fold => sub {
@@ -240,6 +248,19 @@ $VERSION = '0.02';
       return 1;
    },
    
+   take_from => sub {
+      my $recipe = shift;
+      my $data   = shift;
+      local $/   = "\n";
+      my $value;
+      while (1) {
+         $value  = <STDIN>;
+         last if $value =~ /^\s*\.?\d+/;
+      }
+      $recipe -> {ingredients} -> {$data -> [1]}
+              -> value($value+0);
+   },
+
    fold => sub {
       my $recipe = shift;
       my $data   = shift;
@@ -610,10 +631,12 @@ sub compile {
    foreach (@ingredients) {
       $ingredient_no++;
 
-      s/^[ ]*(\d+)[ ]//
-        or croak "Invalid ingredient specification (ingredient no. $ingredient_no, value).";
-
-      my $value = $1;
+      my $value;
+      if (s/^[ ]*(\d+)[ ]//) {
+         $value = $1;
+      } else {
+         $value = undef;
+      }
 
       my $measure_type = '';
       foreach my $type ( keys %Language::Chef::Ingredient::MeasureTypes ) {
@@ -715,16 +738,16 @@ Please see L<Language::Chef>;
 
 =head1 AUTHOR
 
-Steffen Mueller
+Steffen Mueller.
+
 Chef designed by David Morgan-Mar.
 
 =head1 COPYRIGHT
 
-Copyright (c) 2002 Steffen Mueller. All rights reserved. This program is
+Copyright (c) 2002-2003 Steffen Mueller. All rights reserved. This program is
 free software; you can redistribute it and/or modify it under the same
 terms as Perl itself.
 
 Author can be reached at chef-module at steffen-mueller dot net
 
 =cut
-

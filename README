@@ -1,4 +1,4 @@
-Language::Chef version 0.02
+Language::Chef version 0.03
 ===========================
 
 Language::Chef and all contained modules represent a simple
@@ -18,6 +18,7 @@ DEPENDENCIES
 
 This module requires these other modules and libraries:
 
+  File::Temp 0.12 or newer
   Test::More 0.44 or newer
 
 Note that it may well work with older versions of this module,
@@ -26,10 +27,9 @@ the version listed.
 
 COPYRIGHT AND LICENCE
 
-Copyright (C) 2002 Steffen Mueller, all rights reserved.
+Copyright (C) 2002-2003 Steffen Mueller, all rights reserved.
 
 Author can be reached at <chef-module@steffen-mueller.net>
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself. 
-

@@ -10,7 +10,7 @@ use lib 'lib';
 use Language::Chef;
 
 use vars qw/$VERSION/;
-$VERSION = '0.01';
+$VERSION = '0.03';
 
 @ARGV or pod2usage(
   -msg     => "You need to specify a .chef file to interpret.",
@@ -56,14 +56,14 @@ See L<Language::Chef>.
 
 =head1 AUTHOR
 
-Steffen Mueller, mail at steffen-mueller dot net
+Steffen Mueller, chef-module at steffen-mueller dot net
+
 Chef was designed by David Morgan-Mar.
 
 =head1 COPYRIGHT
 
-Copyright (c) 2002 Steffen Mueller. All rights reserved. This program is
+Copyright (c) 2002-2003 Steffen Mueller. All rights reserved. This program is
 free software; you can redistribute it and/or modify it under the same
 terms as Perl itself.
 
 =cut
-

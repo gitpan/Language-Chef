@@ -8,6 +8,7 @@ examples/exp.chef
 examples/fac.chef
 examples/hello.chef
 examples/japh.chef
+examples/stdin.chef
 lib/Language/Chef.pm
 lib/Language/Chef/Container.pm
 lib/Language/Chef/Ingredient.pm
@@ -17,4 +18,4 @@ t/11japh.t
 t/21exp.t
 t/25long.t
 t/31fac.t
-
+t/41stdin.t

@@ -1,3 +1,6 @@
+# Please read the pod documentation in this file for
+# details on how to reach the author and copyright issues.
+
 package Language::Chef;
 
 use 5.006;
@@ -7,7 +10,7 @@ use warnings;
 use Carp;
 
 use vars qw/$VERSION/;
-$VERSION = '0.02';
+$VERSION = '0.03';
 
 use Language::Chef::Recipe;
 use Language::Chef::Container;
@@ -237,6 +240,10 @@ ought to result in bugs and chaos in reverse order.
 All methods provided by Language::Chef are adequately described in the
 synopsis. If you don't think so, you need to read the source code.
 
+There has been an update to the Chef specification. I have implemented
+the changes and marked them in the following documentation with
+"I<new specification>".
+
 With that out of the way, I would like to present a pod-formatted
 copy of the Chef specification from David Morgan-Mar's homepage
 (L<http://www.dangermouse.net/esoteric/chef.html>).
@@ -311,11 +318,13 @@ The next item in a Chef recipe is the ingredient list. This lists the
 ingredients to be used by the program. The syntax is
 
   Ingredients.
-  initial-value [[measure-type] measure] ingredient-name
+  [initial-value] [[measure-type] measure] ingredient-name
   [further ingredients]
 
-Ingredients are listed one per line. The intial-value is a number. The
-optional measure can be any of the following:
+Ingredients are listed one per line. The intial-value is a number.
+I<New specification: The initial-value is now optional. Attempting to
+use an ingredient without a defined value is a run-time error.>
+The optional measure can be any of the following:
 
 =over 4
 
@@ -372,6 +381,14 @@ in sentences. Line breaks are ignored in the method of a recipe. Valid
 method instructions are:
 
 =over 4
+
+=item *
+
+C<Take ingredient from refridgerator.>
+
+I<New specification!> This reads lines from STDIN until a
+numerical value is found. This numerical value is put into the
+ingredient overwriting any previous value.
 
 =item *
 
@@ -569,16 +586,16 @@ when sticking to the specification.
 
 =head1 AUTHOR
 
-Steffen Mueller
+Steffen Mueller.
+
 Chef was designed by David Morgan-Mar.
 
 =head1 COPYRIGHT
 
-Copyright (c) 2002 Steffen Mueller. All rights reserved. This program is
+Copyright (c) 2002-2003 Steffen Mueller. All rights reserved. This program is
 free software; you can redistribute it and/or modify it under the same
 terms as Perl itself.
 
 Author can be reached at chef-module at steffen-mueller dot net
 
 =cut
-

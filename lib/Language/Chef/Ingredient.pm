@@ -7,7 +7,7 @@ use warnings;
 use Carp;
 
 use vars qw/$VERSION %Measures %MeasureTypes/;
-$VERSION = '0.02';
+$VERSION = '0.03';
 
 %Measures = (
   ''          => '',
@@ -47,7 +47,7 @@ sub new {
 
    %$self = (
      name         => '',
-     value        => 0,
+     value        => undef,
      measure      => '',
      measure_type => '',
      type         => '',
@@ -104,6 +104,11 @@ sub value {
 
    $self->{value} = $new_val if defined $new_val;
 
+   if (not defined $self->{value}) {
+      my $name = $self->{name};
+      croak "Attempted to use undefined ingredient '$name'.";
+   }
+
    return $self->{value};
 }
 
@@ -134,16 +139,16 @@ Please see L<Language::Chef>;
 
 =head1 AUTHOR
 
-Steffen Mueller
+Steffen Mueller.
+
 Chef designed by David Morgan-Mar.
 
 =head1 COPYRIGHT
 
-Copyright (c) 2002 Steffen Mueller. All rights reserved. This program is
+Copyright (c) 2002-2003 Steffen Mueller. All rights reserved. This program is
 free software; you can redistribute it and/or modify it under the same
 terms as Perl itself.
 
 Author can be reached at chef-module at steffen-mueller dot net
 
 =cut
-

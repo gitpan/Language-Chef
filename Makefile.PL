@@ -4,7 +4,8 @@ use ExtUtils::MakeMaker;
 WriteMakefile(
     'NAME'		=> 'Language::Chef',
     'VERSION_FROM'	=> 'lib/Language/Chef.pm', # finds $VERSION
-    'PREREQ_PM'		=> {Test::More => 0.44}, # e.g., Module::Name => 1.1
+    'EXE_FILES'         => ['chef.pl', 'compilechef.pl'],
+    'PREREQ_PM'		=> {Test::More => 0.44, File::Temp => 0.12}, # e.g., Module::Name => 1.1
     ($] >= 5.005 ?    ## Add these new keywords supported since 5.005
       (ABSTRACT_FROM => 'lib/Language/Chef.pm', # retrieve abstract from module
        AUTHOR     => 'Steffen Mueller <chef-module@steffen-mueller.net>') : ()),
